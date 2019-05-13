@@ -11,12 +11,12 @@ def add_layer(input, in_size, out_size, activation_function=None):
     Weight = tf.Variable(tf.random_normal([in_size, out_size]))
     # 类似列表 推荐值不为0
     biases = tf.Variable(tf.zeros([1,out_size]) + 0.1)
-    Wx_plus_b = tf.matmul(input, Weight) + biases
+    Wx_plus_b = tf.add(tf.matmul(input, Weight), biases)
     # 默认为非线性方程
     if activation_function is None:
         outputs = Wx_plus_b
     else:
-        outputs = activation_function(Wx_plus_b)
+        outputs = activation_function(Wx_plus_b, )
     return outputs
 
 x_data = np.linspace(-1,1,300)[:,np.newaxis]
